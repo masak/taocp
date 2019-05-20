@@ -10,24 +10,31 @@ interface ListNode<T> {
 enum NullLink { NULL }
 export const Λ = NullLink.NULL;
 
-let linkedList: LinkedList<number> = {
-    first: {
-        info: 1,
-        link: {
-            info: 2,
-            link: {
-                info: 3,
-                link: {
-                    info: 4,
-                    link: {
-                        info: 5,
-                        link: Λ,
-                    },
-                },
-            },
-        },
-    },
-};
+// Builds a linked list from a set of values. Just a convenience
+// function so that we don't have to write the object literals out.
+export function makeLinkedList<T>(...values: T[]): LinkedList<T> {
+    let firstNode: ListNode<T> | NullLink = Λ;
+    let currentNode: ListNode<T>;
+    for (let value of values) {
+        if (firstNode === Λ) {
+            firstNode = {
+                info: value,
+                link: Λ,
+            };
+            currentNode = firstNode;
+        }
+        else {
+            currentNode.link = {
+                info: value,
+                link: Λ,
+            };
+            currentNode = currentNode.link;
+        }
+    }
+    return {
+        first: firstNode,
+    };
+}
 
 // Reverses a linked list _in place_; that is, returns the same
 // list object, but with its elements reversed. The `first` link
