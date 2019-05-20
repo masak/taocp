@@ -1,5 +1,5 @@
-interface LinkedList<T> {
-    first: ListNode<T>;
+export interface LinkedList<T> {
+    first: ListNode<T> | NullLink;
 }
 
 interface ListNode<T> {
@@ -8,7 +8,7 @@ interface ListNode<T> {
 }
 
 enum NullLink { NULL }
-const Λ = NullLink.NULL;
+export const Λ = NullLink.NULL;
 
 let linkedList: LinkedList<number> = {
     first: {
@@ -36,8 +36,7 @@ let linkedList: LinkedList<number> = {
 //
 // The example linked list above represents the list (1, 2, 3, 4, 5).
 // Reversing this list would turn it into (5, 4, 3, 2, 1).
-function reverseLinkedList<T>(list: LinkedList<T>): LinkedList<T> {
-    // TODO: write unit tests
+export function reverseLinkedList<T>(list: LinkedList<T>): LinkedList<T> {
     // TODO: implement
     return list;
 }
