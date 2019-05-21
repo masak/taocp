@@ -13,26 +13,11 @@ export const Λ = NullLink.NULL;
 // Builds a linked list from a set of values. Just a convenience
 // function so that we don't have to write the object literals out.
 export function makeLinkedList<T>(...values: T[]): LinkedList<T> {
-    let firstNode: ListNode<T> | NullLink = Λ;
-    let currentNode: ListNode<T>;
-    for (let value of values) {
-        if (firstNode === Λ) {
-            firstNode = {
-                info: value,
-                link: Λ,
-            };
-            currentNode = firstNode;
-        }
-        else {
-            currentNode.link = {
-                info: value,
-                link: Λ,
-            };
-            currentNode = currentNode.link;
-        }
-    }
     return {
-        first: firstNode,
+        first: values.reduceRight(
+            (nextNode: ListNode<T> | NullLink, info: T) => ({ info, link: nextNode }),
+            Λ
+        ),
     };
 }
 
