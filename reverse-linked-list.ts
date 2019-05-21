@@ -1,4 +1,4 @@
-import { LinkedList, ListNode, Λ } from './linked-list';
+import { LinkedList } from './linked-list';
 
 // Reverses a linked list _in place_; that is, returns the same
 // list object, but with its elements reversed. The `first` link
