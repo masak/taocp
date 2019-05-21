@@ -1,8 +1,13 @@
 {
 	"scripts": {
-		"test": "tsc && ava"
+		"test": "tsc && ava",
+		"lint": "eslint *.ts test/*.ts"
 	},
 	"devDependencies": {
-		"ava": "^1.4.1"
+		"@typescript-eslint/eslint-plugin": "^1.9.0",
+		"@typescript-eslint/parser": "^1.9.0",
+		"ava": "^1.4.1",
+		"eslint": "^5.16.0",
+		"typescript": "^3.4.5"
 	}
 }

@@ -3,6 +3,6 @@ node_js:
   - "11"
 before_script:
   - npm install
-  - npm install -g typescript
 script:
   - npm test
+  - npm run lint

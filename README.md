@@ -6,7 +6,6 @@ Reversing a linked list!
 
 ```sh
 $ npm install
-$ npm install -g typescript
 ```
 
 ## Run the tests
