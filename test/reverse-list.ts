@@ -1,5 +1,6 @@
 import test from 'ava';
-import { makeLinkedList, Λ, reverseLinkedList } from '../invert-linked-list';
+import { makeLinkedList } from '../linked-list';
+import { reverseLinkedList } from '../reverse-linked-list';
 
 test('reversing an empty list is an empty list', t => {
     let emptyList = makeLinkedList();
