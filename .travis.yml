@@ -6,3 +6,4 @@ before_script:
 script:
   - npm test
   - npm run lint
+  - npx prettier --parser=typescript --tab-width=4 --trailing-comma=all --check *.ts test/*.ts
