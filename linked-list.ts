@@ -7,7 +7,9 @@ export interface ListNode<T> {
     link: ListNode<T> | NullLink;
 }
 
-export enum NullLink { NULL }
+export enum NullLink {
+    NULL,
+}
 export const Λ = NullLink.NULL;
 
 // Builds a linked list from a set of values. Just a convenience
@@ -15,8 +17,11 @@ export const Λ = NullLink.NULL;
 export function makeLinkedList<T>(...values: T[]): LinkedList<T> {
     return {
         first: values.reduceRight(
-            (nextNode: ListNode<T> | NullLink, info: T): ListNode<T> => ({ info, link: nextNode }),
-            Λ
+            (nextNode: ListNode<T> | NullLink, info: T): ListNode<T> => ({
+                info,
+                link: nextNode,
+            }),
+            Λ,
         ),
     };
 }
