@@ -8,8 +8,9 @@ Reversing a linked list!
 $ npm install
 ```
 
-## Run the tests
+## Run the tests and the linter
 
 ```sh
 $ npm test
+$ npm run lint
 ```
