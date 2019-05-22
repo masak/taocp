@@ -13,11 +13,10 @@ export function reverseLinkedList<T>(list: LinkedList<T>): LinkedList<T> {
     for (
         let node: ListNode<T> | NullLink = list.first;
         node !== Λ;
-        node = nextNode
+        [previousNode, node] = [node, nextNode]
     ) {
         nextNode = node.link;
         node.link = previousNode;
-        previousNode = node;
     }
     list.first = previousNode;
     return list;
