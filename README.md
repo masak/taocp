@@ -25,7 +25,7 @@ FILES=$(git diff --cached --name-only --diff-filter=ACM "*.ts" | sed 's| |\\ |g'
 [ -z "$FILES" ] && exit 0
 
 # Prettify all selected files
-echo "$FILES" | xargs ./node_modules/.bin/prettier --parser=typescript --tab-width=4 --trailing-comma=all --write
+echo "$FILES" | xargs ./node_modules/.bin/prettier --write
 
 # Add back the modified/prettified files to staging
 echo "$FILES" | xargs git add

@@ -2,7 +2,7 @@
 	"scripts": {
 		"test": "tsc && ava",
 		"lint": "eslint *.ts test/*.ts",
-		"prettier": "prettier --parser=typescript --tab-width=4 --trailing-comma=all --write *.ts test/*.ts"
+		"prettier": "prettier --write *.ts test/*.ts"
 	},
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^1.9.0",
@@ -11,5 +11,10 @@
 		"eslint": "^5.16.0",
 		"prettier": "1.17.1",
 		"typescript": "^3.4.5"
+	},
+	"prettier": {
+		"parser": "typescript",
+		"tabWidth": 4,
+		"trailingComma": "all"
 	}
 }
