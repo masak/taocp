@@ -12,3 +12,18 @@ test("reversing a short list gives the expected result", (t): void => {
     let expectedOutput = makeLinkedList(3, 2, 1);
     t.deepEqual(reverseLinkedList(input), expectedOutput);
 });
+
+test("reversing a very long list does not cause a stack overflow", (t): void => {
+    const LENGTH = 10_000;
+    let longAscendingArray = Array.from(
+        { length: LENGTH },
+        (x, i): number => i,
+    );
+    let input = makeLinkedList(...longAscendingArray);
+    let longDescendingArray = Array.from(
+        { length: LENGTH },
+        (x, i): number => LENGTH - i - 1,
+    );
+    let expectedOutput = makeLinkedList(...longDescendingArray);
+    t.deepEqual(reverseLinkedList(input), expectedOutput);
+});
