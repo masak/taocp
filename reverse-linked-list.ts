@@ -7,6 +7,21 @@ import { LinkedList, ListNode, NullLink, Λ } from "./linked-list";
 //
 // The example linked list above represents the list (1, 2, 3, 4, 5).
 // Reversing this list would turn it into (5, 4, 3, 2, 1).
+//
+// Here is an algorithm for the function, written in the style of
+// TAoCP:
+//
+//     Algorithm I (Invert a linked list). The linked list in L will be
+//     reversed in place.
+//
+//     I1. [Initialize] Set P ← Λ, C ← FIRST[L].
+//
+//     I2. [End of list?] If C is Λ, go to I4.
+//
+//     I3. [Point link backwards] Set N ← LINK[C], LINK[C] ← P, P ← C,
+//         C ← N. Go back to I2.
+//
+//     I4. [Point first node] Set FIRST[L] ← P. ■
 export function reverseLinkedList<T>(list: LinkedList<T>): LinkedList<T> {
     let previousNode: ListNode<T> | NullLink = Λ;
     let nextNode: ListNode<T> | NullLink;
