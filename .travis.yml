@@ -6,4 +6,4 @@ before_script:
 script:
   - npm test
   - npm run lint
-  - npx prettier --check *.ts test/*.ts
+  - npx prettier --check ch2.2.3-ex7/*.ts test/ch2.2.3-ex7/*.ts
