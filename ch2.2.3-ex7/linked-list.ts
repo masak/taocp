@@ -17,7 +17,10 @@ export const Λ = NullLink.NULL;
 export function makeLinkedList<T>(...values: T[]): LinkedList<T> {
     return {
         first: values.reduceRight(
-            (nextNode: ListNode<T> | NullLink, info: T): ListNode<T> => ({
+            (
+                nextNode: ListNode<T> | NullLink,
+                info: T,
+            ): ListNode<T> | NullLink => ({
                 info,
                 link: nextNode,
             }),
