@@ -7,10 +7,6 @@ export interface ListNode<T> {
     link: ListNode<T>;
 }
 
-interface ProtoCircularList<T> {
-    ptr: ProtoListNode<T> | NullLink;
-}
-
 interface ProtoListNode<T> {
     info: T;
     link: ProtoListNode<T> | NullLink;
@@ -24,25 +20,29 @@ export const Λ = NullLink.NULL;
 // Builds a circular list from a set of values. Just a convenience
 // function so that we don't have to write the object literals out.
 export function makeCircularList<T>(...values: T[]): CircularList<T> {
-    if (values.length === 0) {
-        return { ptr: Λ };
+    let rightmostNode: ProtoListNode<T> | undefined = undefined;
+    let leftmostNode: ProtoListNode<T> | NullLink = values.reduceRight(
+        (
+            nextNode: ProtoListNode<T> | NullLink,
+            info: T,
+        ): ProtoListNode<T> | NullLink => {
+            let newNode = {
+                info,
+                link: nextNode,
+            };
+            rightmostNode = rightmostNode || newNode;
+            return newNode;
+        },
+        Λ, // overwritten below
+    );
+    // At this point, `rightmostNode`, if it was ever set, will have
+    // its .link pointing to Λ. We want it to instead point to `leftmostNode`.
+    if (rightmostNode) {
+        (rightmostNode as ProtoListNode<T>).link = leftmostNode;
     }
-    let last!: ProtoListNode<T>;
-    let unjoinedCircularList: ProtoCircularList<T> = {
-        ptr: values.reduceRight(
-            (
-                nextNode: ProtoListNode<T> | NullLink,
-                info: T,
-            ): ProtoListNode<T> | NullLink =>
-                (last = last || {
-                    info,
-                    link: nextNode,
-                }),
-            Λ, // overwritten below
-        ),
+    return {
+        // The below conversion is now valid because there is no Λ
+        ptr: (rightmostNode as unknown) as ListNode<T>,
     };
-    let first = unjoinedCircularList.ptr;
-    last.link = first;
-    let circularList: CircularList<T> = unjoinedCircularList as CircularList<T>;
-    return circularList;
 }
+

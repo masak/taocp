@@ -2,21 +2,24 @@ import { CircularList, ListNode, NullLink, Λ } from "./circular-list";
 
 export function reverseCircularList<T>(list: CircularList<T>): CircularList<T> {
 
-    let openedList = Object.assign({ first: list.ptr }, { link: Λ });
-    let lastLink = list.ptr;
-    let previousNode: ListNode<T> | NullLink = Λ;
-    let nextNode: ListNode<T> | NullLink;
+    if(list.ptr === undefined) return list;
+
+    let lastLink: ListNode<T>  = list.ptr.link;
+    let previousNode: ListNode<T>;
+    let nextNode: ListNode<T>;
+    let lastRealLink: ListNode<T>;
+
     for (
-        let node: ListNode<T> | NullLink = openedList.first;
-        node !== Λ;
-        [previousNode, node] = [node, nextNode]
+        let node: ListNode<T> = list.ptr.link;
+        node !== lastLink;
+        [nextNode, node] = [node, previousNode]
     ) {
         nextNode = node.link;
         node.link = previousNode;
+        previousNode = node;
+        lastRealLink = previousNode;
     }
-
-    openedList.first = lastLink;
-
-    let newCircularList = { ptr: openedList.first } as CircularList<T>;
-    return newCircularList;
+    list.ptr.link = lastRealLink;
+    
+    return list;
 }
