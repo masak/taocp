@@ -17,10 +17,16 @@ export enum NullLink {
 }
 export const Λ = NullLink.NULL;
 
+function isProtoListNode<T>(
+    n: ProtoListNode<T> | NullLink,
+): n is ProtoListNode<T> {
+    return n !== Λ;
+}
+
 // Builds a circular list from a set of values. Just a convenience
 // function so that we don't have to write the object literals out.
 export function makeCircularList<T>(...values: T[]): CircularList<T> {
-    let rightmostNode: ProtoListNode<T> | undefined = undefined;
+    let rightmostNode: ProtoListNode<T> | NullLink = Λ;
     let leftmostNode: ProtoListNode<T> | NullLink = values.reduceRight(
         (
             nextNode: ProtoListNode<T> | NullLink,
@@ -30,18 +36,17 @@ export function makeCircularList<T>(...values: T[]): CircularList<T> {
                 info,
                 link: nextNode,
             };
-            rightmostNode = rightmostNode || newNode;
+            rightmostNode = rightmostNode === Λ ? newNode : rightmostNode;
             return newNode;
         },
         Λ, // overwritten below
     );
     // At this point, `rightmostNode`, if it was ever set, will have
     // its .link pointing to Λ. We want it to instead point to `leftmostNode`.
-    if (rightmostNode) {
-        (rightmostNode as ProtoListNode<T>).link = leftmostNode;
+    if (isProtoListNode(rightmostNode)) {
+        rightmostNode.link = leftmostNode;
     }
     return {
-        // The below conversion is now valid because there is no Λ
-        ptr: (rightmostNode as unknown) as ListNode<T>,
+        ptr: rightmostNode,
     };
 }
