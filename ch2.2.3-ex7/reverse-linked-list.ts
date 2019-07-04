@@ -5,9 +5,6 @@ import { LinkedList, ListNode, NullLink, Λ } from "./linked-list";
 // now points to the element that used to be _last_, and all the
 // other links between the nodes have been inverted.
 //
-// The example linked list above represents the list (1, 2, 3, 4, 5).
-// Reversing this list would turn it into (5, 4, 3, 2, 1).
-//
 // Here is an algorithm for the function, written in the style of
 // TAoCP:
 //
