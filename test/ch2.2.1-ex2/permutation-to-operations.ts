@@ -31,3 +31,7 @@ test("not a permutation", (t): void => {
         "Permutation can't have duplicates",
     );
 });
+
+test("letting through two train cars", (t): void => {
+    t.deepEqual([S, X, S, X], permToOps([1, 2]));
+});

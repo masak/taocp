@@ -18,5 +18,10 @@ export function permToOps(inputPermutation: number[]): Operation[] {
         throw new NotAPermutation();
     }
 
-    return [Operation.S, Operation.X];
+    let outputOperations = [];
+    for (let number of inputPermutation) {
+        outputOperations.push(Operation.S);
+        outputOperations.push(Operation.X);
+    }
+    return outputOperations;
 }
