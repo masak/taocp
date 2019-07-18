@@ -1,7 +1,4 @@
-export enum Operation {
-    S = "S",
-    X = "X",
-}
+import { Operation } from "./operations";
 
 export class NotAPermutation extends Error {}
 

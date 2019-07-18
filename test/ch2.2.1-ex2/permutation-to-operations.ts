@@ -1,6 +1,6 @@
 import test from "ava";
+import { Operation } from "../../ch2.2.1-ex2/operations";
 import {
-    Operation,
     NotAPermutation,
     CannotOutputInOriginalOrder,
     permToOps,
