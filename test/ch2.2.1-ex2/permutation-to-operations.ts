@@ -2,6 +2,7 @@ import test from "ava";
 import {
     Operation,
     NotAPermutation,
+    CannotOutputInOriginalOrder,
     permToOps,
 } from "../../ch2.2.1-ex2/permutation-to-operations";
 
@@ -51,4 +52,18 @@ test("example 2/3 from the exercise", (t): void => {
         [S, S, S, X, X, S, S, X, S, X, X, X],
         permToOps([3, 2, 5, 6, 4, 1]),
     );
+});
+
+test("can't output stacked cars in original order", (t): void => {
+    try {
+        permToOps([3, 1, 2]);
+        t.fail("should've thrown an exception");
+    } catch (ex) {
+        if (!(ex instanceof CannotOutputInOriginalOrder)) {
+            throw ex;
+        }
+        t.is(ex.firstNumber, 1);
+        t.is(ex.secondNumber, 2);
+        t.is(ex.previousHighNumber, 3);
+    }
 });
