@@ -17,3 +17,24 @@ test("cannot pop an empty stack", (t): void => {
 
     t.throws((): number[] => opsToPerm([S, X, X]), CannotPopEmptyStack);
 });
+
+test("letting through two train cars", (t): void => {
+    t.deepEqual([1, 2], opsToPerm([S, X, S, X]));
+});
+
+test("stacking cars; output in reverse", (t): void => {
+    t.deepEqual([2, 1], opsToPerm([S, S, X, X]));
+    t.deepEqual([3, 2, 1], opsToPerm([S, S, S, X, X, X]));
+    t.deepEqual([1, 3, 2], opsToPerm([S, X, S, S, X, X]));
+});
+
+test("example 1/3 from the exercise", (t): void => {
+    t.deepEqual([2, 4, 3, 1], opsToPerm([S, S, X, S, S, X, X, X]));
+});
+
+test("example 2/3 from the exercise", (t): void => {
+    t.deepEqual(
+        [3, 2, 5, 6, 4, 1],
+        opsToPerm([S, S, S, X, X, S, S, X, S, X, X, X]),
+    );
+});
