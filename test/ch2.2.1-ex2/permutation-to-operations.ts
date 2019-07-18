@@ -35,3 +35,9 @@ test("not a permutation", (t): void => {
 test("letting through two train cars", (t): void => {
     t.deepEqual([S, X, S, X], permToOps([1, 2]));
 });
+
+test("stacking cars; output in reverse", (t): void => {
+    t.deepEqual([S, S, X, X], permToOps([2, 1]));
+    t.deepEqual([S, S, S, X, X, X], permToOps([3, 2, 1]));
+    t.deepEqual([S, X, S, S, X, X], permToOps([1, 3, 2]));
+});

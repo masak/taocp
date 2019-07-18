@@ -19,8 +19,12 @@ export function permToOps(inputPermutation: number[]): Operation[] {
     }
 
     let outputOperations = [];
+    let nextCarFromInput = 1;
     for (let number of inputPermutation) {
-        outputOperations.push(Operation.S);
+        while (number >= nextCarFromInput) {
+            outputOperations.push(Operation.S);
+            nextCarFromInput++;
+        }
         outputOperations.push(Operation.X);
     }
     return outputOperations;
