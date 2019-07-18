@@ -41,3 +41,7 @@ test("stacking cars; output in reverse", (t): void => {
     t.deepEqual([S, S, S, X, X, X], permToOps([3, 2, 1]));
     t.deepEqual([S, X, S, S, X, X], permToOps([1, 3, 2]));
 });
+
+test("example 1/3 from the exercise", (t): void => {
+    t.deepEqual([S, S, X, S, S, X, X, X], permToOps([2, 4, 3, 1]));
+});
