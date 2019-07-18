@@ -3,6 +3,7 @@ import { Operation } from "../../ch2.2.1-ex2/operations";
 import {
     opsToPerm,
     CannotPopEmptyStack,
+    CarsLeftOnStack,
 } from "../../ch2.2.1-ex2/operations-to-permutation";
 
 const S = Operation.S;
@@ -37,4 +38,10 @@ test("example 2/3 from the exercise", (t): void => {
         [3, 2, 5, 6, 4, 1],
         opsToPerm([S, S, S, X, X, S, S, X, S, X, X, X]),
     );
+});
+
+test("cars left on the stack", (t): void => {
+    t.throws((): number[] => opsToPerm([S]), CarsLeftOnStack);
+    t.throws((): number[] => opsToPerm([S, X, S]), CarsLeftOnStack);
+    t.throws((): number[] => opsToPerm([S, S, X]), CarsLeftOnStack);
 });

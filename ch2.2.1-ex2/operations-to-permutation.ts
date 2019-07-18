@@ -1,6 +1,7 @@
 import { Operation } from "./operations";
 
 export class CannotPopEmptyStack extends Error {}
+export class CarsLeftOnStack extends Error {}
 
 export function opsToPerm(operations: Operation[]): number[] {
     let nextCarNumber = 1;
@@ -21,6 +22,10 @@ export function opsToPerm(operations: Operation[]): number[] {
                 permutation.push(number);
                 break;
         }
+    }
+
+    if (stack.length) {
+        throw new CarsLeftOnStack();
     }
 
     return permutation;
