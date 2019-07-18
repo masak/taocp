@@ -65,5 +65,9 @@ test("can't output stacked cars in original order", (t): void => {
         t.is(ex.firstNumber, 1);
         t.is(ex.secondNumber, 2);
         t.is(ex.previousHighNumber, 3);
+        t.is(
+            ex.toString(),
+            "Can't output 1 then 2; these were stacked in order to output 3",
+        );
     }
 });

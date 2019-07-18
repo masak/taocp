@@ -20,6 +20,12 @@ export class CannotOutputInOriginalOrder extends Error {
         this.secondNumber = secondNumber;
         this.previousHighNumber = previousHighNumber;
     }
+
+    public toString(): string {
+        return `Can't output ${this.firstNumber} then ${
+            this.secondNumber
+        }; these were stacked in order to output ${this.previousHighNumber}`;
+    }
 }
 
 // Returns `true` iff the array is some permutation of [1, 2, ..., n], n >= 1
