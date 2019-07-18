@@ -67,7 +67,25 @@ test("can't output stacked cars in original order", (t): void => {
         t.is(ex.previousHighNumber, 3);
         t.is(
             ex.toString(),
-            "Can't output 1 then 2; these were stacked in order to output 3",
+            "Can't output 1 then 2; the former was stacked in order to output 3",
+        );
+    }
+});
+
+test("example 3/3 from the exercise", (t): void => {
+    try {
+        permToOps([1, 5, 4, 6, 2, 3]);
+        t.fail("should've thrown an exception");
+    } catch (ex) {
+        if (!(ex instanceof CannotOutputInOriginalOrder)) {
+            throw ex;
+        }
+        t.is(ex.firstNumber, 2);
+        t.is(ex.secondNumber, 3);
+        t.is(ex.previousHighNumber, 5);
+        t.is(
+            ex.toString(),
+            "Can't output 2 then 3; the former was stacked in order to output 5",
         );
     }
 });
