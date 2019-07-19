@@ -1,7 +1,18 @@
 import { Operation } from "./operations";
 
+/** In general, an array of integers is not a permutation of 1..n. For when it
+ *  isn't, we throw this exception, because the algorithm works under the
+ *  assumption that the input is such a permutation.
+ */
 export class NotAPermutation extends Error {}
 
+/** Cars sometimes get put on the stack in order to immediately be emitted, but
+ *  much of the time they get put on the stack in order to emit some higher-
+ *  numbered car. In this latter case, because the stack is a stack, we're only
+ *  able to emit the cars in the opposite (LIFO) order they were stacked.
+ *  This exception signals that an attempt was made to emit some cars in the
+ *  (FIFO) order they were stacked.
+ */
 export class CannotOutputInOriginalOrder extends Error {
     public firstNumber: number;
     public secondNumber: number;
@@ -27,7 +38,7 @@ export class CannotOutputInOriginalOrder extends Error {
     }
 }
 
-// Returns `true` iff the array is some permutation of [1, 2, ..., n], n >= 1
+/** Returns whether the array is some permutation of [1, 2, ..., n], n >= 1. */
 function isPermutation(array: number[]): boolean {
     return (
         array.length > 0 &&
@@ -35,6 +46,29 @@ function isPermutation(array: number[]): boolean {
     );
 }
 
+/** Given a permutation, returns a sequence of stack operations (if any) that
+ *  will yield that permutation.
+ *
+ *  For example: (2 3 4 1) results in `SSXSXSXX`.
+ *
+ *  If the input is malformed somehow, throws `NotAPermutation`.
+ *
+ *  The following explains the algorithm in all its generality: the next number
+ *  we want to emit is either:
+ *
+ *  - The next number in the input, in which case we just stack it and emit it
+ *    immediately.
+ *
+ *  - Higher than the next number in the input, in which case we need to stack
+ *    all the numbers up to the expected one, and then emit that. (The lower
+ *    numbers remain on the stack.)
+ *
+ *  - Lower than the next number in the input. We can't have emitted it yet,
+ *    since the input is a permutation. Instead, the number must be on the
+ *    stack. X is our only emitting operation, so we can only emit the top of
+ *    the stack. If we try to emit anything else, the function throws
+ *    `CannotOutputInOriginalOrder`.
+ */
 export function permToOps(inputPermutation: number[]): Operation[] {
     if (!isPermutation(inputPermutation)) {
         throw new NotAPermutation();
