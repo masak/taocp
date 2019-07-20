@@ -7,7 +7,6 @@ import {
 export function sequenceIsAdmissible(sequence: Operation[]): boolean {
     try {
         let nextCarNumber = 1;
-        let permutation: number[] = [];
         let stack: number[] = [];
 
         for (let op of sequence) {
@@ -21,7 +20,6 @@ export function sequenceIsAdmissible(sequence: Operation[]): boolean {
                     if (typeof number === "undefined") {
                         throw new CannotPopEmptyStack();
                     }
-                    permutation.push(number);
                     break;
             }
         }
