@@ -1,31 +1,27 @@
 import { Operation } from "../ch2.2.1-ex2/operations";
 
 export function sequenceIsAdmissible(sequence: Operation[]): boolean {
-    try {
-        let nextCarNumber = 1;
-        let stack: number[] = [];
+    let nextCarNumber = 1;
+    let stack: number[] = [];
 
-        for (let op of sequence) {
-            switch (op) {
-                case Operation.S:
-                    stack.push(nextCarNumber);
-                    nextCarNumber++;
-                    break;
-                case Operation.X:
-                    let number = stack.pop();
-                    if (typeof number === "undefined") {
-                        return false;
-                    }
-                    break;
-            }
+    for (let op of sequence) {
+        switch (op) {
+            case Operation.S:
+                stack.push(nextCarNumber);
+                nextCarNumber++;
+                break;
+            case Operation.X:
+                let number = stack.pop();
+                if (typeof number === "undefined") {
+                    return false;
+                }
+                break;
         }
+    }
 
-        if (stack.length) {
-            return false;
-        }
-
-        return true;
-    } catch {
+    if (stack.length) {
         return false;
     }
+
+    return true;
 }
