@@ -10,10 +10,10 @@ export function sequenceIsAdmissible(sequence: Operation[]): boolean {
                 break;
             case Operation.X:
                 stackSize -= 1;
-                if (stackSize < 0) {
-                    return false;
-                }
                 break;
+        }
+        if (stackSize < 0) {
+            return false;
         }
     }
 
