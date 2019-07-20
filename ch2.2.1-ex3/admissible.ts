@@ -1,8 +1,4 @@
 import { Operation } from "../ch2.2.1-ex2/operations";
-import {
-    CannotPopEmptyStack,
-    CarsLeftOnStack,
-} from "../ch2.2.1-ex2/operations-to-permutation";
 
 export function sequenceIsAdmissible(sequence: Operation[]): boolean {
     try {
@@ -18,14 +14,14 @@ export function sequenceIsAdmissible(sequence: Operation[]): boolean {
                 case Operation.X:
                     let number = stack.pop();
                     if (typeof number === "undefined") {
-                        throw new CannotPopEmptyStack();
+                        return false;
                     }
                     break;
             }
         }
 
         if (stack.length) {
-            throw new CarsLeftOnStack();
+            return false;
         }
 
         return true;
