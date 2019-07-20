@@ -19,9 +19,5 @@ export function sequenceIsAdmissible(sequence: Operation[]): boolean {
         }
     }
 
-    if (stack.length) {
-        return false;
-    }
-
-    return true;
+    return !stack.length;
 }
