@@ -4,8 +4,7 @@ export function sequenceIsAdmissible(sequence: Operation[]): boolean {
     let stackSize = 0;
 
     for (let op of sequence) {
-        stackSize += op === Operation.S ? +1 : -1;
-        if (stackSize < 0) {
+        if ((stackSize += op === Operation.S ? +1 : -1) < 0) {
             return false;
         }
     }
