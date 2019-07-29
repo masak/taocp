@@ -57,3 +57,20 @@ Or you can compile the script with `csc` and run the resulting binary:
 csc my-script.scm
 ./my-script
 ```
+
+## Setting up GHC
+
+The Haskell solutions have been confirmed to run on [The Glorious Glasgow Haskell Compilation
+System (GHC)](https://www.haskell.org/ghc/), version 8.0.1.
+On Debian/Ubuntu systems, it can be installed via apt:
+
+```
+sudo apt-get install ghc
+```
+
+To compile and run a Haskell script, use the `ghc` binary:
+
+```
+ghc my-script.hs
+./my-script
+```
