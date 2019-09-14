@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+
+\begin{document}
+
+We are given the two modular identities
+
+\begin{align*}
+x \bmod 3 &= 2 \\
+x \bmod 5 &= 3
+\end{align*}
+The first thing we would like to do is to put them on ``common moduli''.
+Law C allows us to do so:
+
+\begin{align*}
+5 x \bmod 15 &= 10 \\
+3 x \bmod 15 &= 9
+\end{align*}
+Subtracting one from the other (using Law A):
+
+\begin{equation*}
+2 x \bmod 15 = 1
+\end{equation*}
+We are almost there; we'd like to get the $x$ alone on the left side.
+If we were dealing with rationals or reals, we would just divide both sides by $2$ and be done.
+But this is modular arithmetic; there isn't a division operation as such.
+There is, however, the modular inverse of $2$, and we can multiply both sides by it.
+Since $2 * 8 \equiv 1 \pmod{15}$, $8$ is the modular inverse of $2$.
+Therefore,
+
+\begin{equation*}
+x \bmod 15 = 8
+\end{equation*}
+Done.
+
+But wait!
+How did we find that $8$, exactly?
+By all accounts, we just pulled it like a rabbit out of a hat.
+If we wanted to find it the hard way, we could scan for it among all the 15 possible values --- but that's not so elegant.
+The extended Euclid's algorithm allows us to find it in just a few steps with these inputs:
+
+\begin{equation*}
+a m + b n = 1
+\end{equation*}
+In our case, $m = 2$, $n = 15$, and Euclid's algorithm gives us $a$ (and $b$) as output.
+The file \texttt{modular.hs} contains a program with a demonstration of this solution.
+Its function \texttt{modularInverse} has been simplified to not even compute $b$, as we don't care about it.
+
+\end{document}
