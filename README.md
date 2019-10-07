@@ -74,3 +74,18 @@ To compile and run a Haskell script, use the `ghc` binary:
 ghc my-script.hs
 ./my-script
 ```
+
+## Setting up LaTeX
+
+The LaTeX files have been confirmed to build with `pdflatex`.
+On Debian/Ubuntu systems, it can be installed via apt:
+
+```
+sudo apt-get install texlive
+```
+
+To produce a PDF from a LaTeX source file, use the `pdflatex` binary:
+
+```
+pdflatex my-latex-file.tex
+```
