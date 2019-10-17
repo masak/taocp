@@ -1,0 +1,14 @@
+(tem linked-list first nil)
+
+(def reverse-linked-list (lst)
+  (dyn previous-node nil
+    (dyn next-node nil
+      (loop node lst!first next-node idfn
+        (set next-node (cdr node))
+        (set (cdr node) previous-node)
+        (set previous-node node)))
+    (set lst!first previous-node)))
+
+(set lst (make linked-list '(1 2 3 4 5)))
+(reverse-linked-list lst)
+(prn lst)
