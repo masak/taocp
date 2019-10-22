@@ -6,7 +6,7 @@
 (def reverse-linked-list (lst)
   (with (prev nil
          next nil)
-    (loop node lst!first next idfn
+    (loop node lst!first next node
       (set next (cdr node))
       (set (cdr node) prev)
       (set prev node))
