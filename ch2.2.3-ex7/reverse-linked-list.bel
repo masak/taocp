@@ -1,5 +1,8 @@
 (tem linked-list first nil)
 
+(def prs-linked-list (lst)
+  (prs "<linked-list " lst!first ">"))
+
 (def reverse-linked-list (lst)
   (let previous-node nil
     (let next-node nil
@@ -11,4 +14,4 @@
 
 (set lst (make linked-list '(1 2 3 4 5)))
 (reverse-linked-list lst)
-(prn lst)
+(prn (prs-linked-list lst))
