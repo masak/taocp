@@ -7,9 +7,9 @@
   (with (prev nil
          next nil)
     (loop node lst!first next node
-      (set next (cdr node))
-      (set (cdr node) prev)
-      (set prev node))
+      (set next (cdr node))   ; remember the next node so we can follow it
+      (set (cdr node) prev)   ; point backwards along the list instead of forwards
+      (set prev node))        ; remember the previous node so we can set it later
     (set lst!first prev)))
 
 (set lst (make linked-list '(1 2 3 4 5)))
