@@ -4,13 +4,13 @@
   (prs "<linked-list " lst!first ">"))
 
 (def reverse-linked-list (lst)
-  (with (previous-node nil
-         next-node nil)
-    (loop node lst!first next-node idfn
-      (set next-node (cdr node))
-      (set (cdr node) previous-node)
-      (set previous-node node))
-    (set lst!first previous-node)))
+  (with (prev nil
+         next nil)
+    (loop node lst!first next idfn
+      (set next (cdr node))
+      (set (cdr node) prev)
+      (set prev node))
+    (set lst!first prev)))
 
 (set lst (make linked-list '(1 2 3 4 5)))
 (reverse-linked-list lst)
