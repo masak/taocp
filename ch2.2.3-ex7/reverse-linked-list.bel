@@ -9,7 +9,7 @@
     (loop node lst!first next node
       (set next (cdr node))   ; remember the next node so we can follow it
       (set (cdr node) prev)   ; point backwards along the list instead of forwards
-      (set prev node))        ; remember the previous node so we can set it later
+      (set prev node))        ; for the next iteration, this node becomes the previous one
     (set lst!first prev)))
 
 (set lst (make linked-list '(1 2 3 4 5)))
