@@ -1,0 +1,16 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\begin{document}
+
+Assume two given admissible sequences differ. We want to show that the permutations their operations encode differ too.
+
+After a common prefix, there will be a first location where the two sequences differ.
+One is an \texttt{X}, causing the car on the top of the stack to be emitted.
+The other is an \texttt{S}, causing that same car to be \textit{buried} further down in the stack.
+The next \texttt{X} in that sequence will not emit the buried car, since it must first emit what's above it on the stack.
+
+Therefore the two sequences cannot emit that car in the same point in the permutation, and the permutations differ.
+
+\end{document}
