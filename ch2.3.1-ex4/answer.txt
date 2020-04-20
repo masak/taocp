@@ -1,0 +1,27 @@
+The traversal proposed could be described as a kind of "mirrored preorder"
+-- "preorder" because it visits the root first, "mirrored" because it
+visits the right subtree before the left. It's reasonable to expect that
+it would correspond to one of the usual three traversals, but backwards.
+
+Indeed, in exercise 2 we saw that traversing that exercise's tree in
+postorder yielded
+
+(c) 4 5 2 6 7 3 1
+
+And traversing the same tree in "mirrored preorder" gives the same
+sequence, but backwards:
+
+(c') 1 3 7 6 2 5 4
+
+Why is it reasonable to expect this? Because "mirrored preorder" uses
+the same steps as preorder, except that "left" and "right" have been
+interchanged. Therefore, "mirrored preorder" on a tree T yields the
+same node order as preorder on a tree T' in which left and right have
+been interchanged, i.e. a tree flipped horizontally.
+
+Why does "mirrored preorder" correspond to _postorder_ backwards, and
+not to _preorder_ backwards? Because by turning the whole resulting
+order backwards, it's like we're running time itself backwards.
+Visiting the root _first_ in the normal time flow corresponds to visiting
+the root _last_ in a backwards time flow.
+
