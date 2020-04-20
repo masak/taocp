@@ -1,0 +1,52 @@
+Providing a "superposition" of the preorder traversal and the
+inorder traversal yields this:
+
+preorder/inorder
+    Visit the root (preorder)
+    Traverse the left subtree
+    Visit the root (inorder)
+    Traverse the right subtree
+
+In (a), we're interested in making the two visits co-incide,
+something they will only do _if the left subtree is empty_
+(or if the whole binary tree is the empty tree).
+
+Therefore, in (a) the answer is all the binary trees full of
+empty left subtrees:
+
+    *
+     \
+      *
+       \
+       ...
+         \
+          *
+
+That is, a "chain" of zero or more nodes connected by right
+links.
+
+By symmetry, the answer to (c) is similarly a "chain" of zero
+or more nodes connected by left links:
+
+          *
+         /
+        *
+       /
+     ...
+     /
+    *
+
+As to (b), when we provide a hybrid algorithm:
+
+preorder/postorder
+    Visit the root (preorder)
+    Traverse the left subtree
+    Traverse the right subtree
+    Visit the root (postorder)
+
+We see that the requirement now is that both right and left subtrees
+be empty. (Or the whole tree.)
+
+Therefore, for (b), the only two possible trees are the empty tree
+and the tree consisting of a single node.
+
