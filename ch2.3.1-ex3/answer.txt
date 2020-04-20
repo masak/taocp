@@ -1,0 +1,35 @@
+The statement is true.
+
+In order to see why, consider the definition of the three orders:
+
+Preorder traversal
+    Visit the root
+    Traverse the left subtree
+    Traverse the right subtree
+
+Inorder traversal
+    Traverse the left subtree
+    Visit the root
+    Traverse the right subtree
+
+Postorder traversal
+    Traverse the left subtree
+    Traverse the right subtree
+    Visit the root
+
+And note the following convenient facts:
+
+- For internal nodes, we can disregard the "visit the root" case
+  (since we don't care about the order of internal nodes).
+
+- When we do, in those cases the three algorithms are identical.
+
+- For the terminal nodes, we can disregard the two "traverse the
+  left/right subtree" steps (since those will both be Λ anyway).
+
+- When we do, in those cases the three algorithms are again identical.
+
+Taken together: when we suppress visiting all the internal nodes,
+the nodes that _are_ visited, the terminal nodes, will be visited in
+the same order by the preorder, inorder, and postorder traversals.
+
