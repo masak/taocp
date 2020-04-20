@@ -1,0 +1,22 @@
+Later, in exercise 18, we are asked to picture an algorithm that
+visits each node _twice_, once "on the way down the left subtree"
+(preorder) and once "on the way from the left subtree to the
+right subtree". Such an algorithm is a slight modification of
+Algorithm T; squeeze a "visit" instruction into the start of T3
+and you're there.
+
+Which means that we've shown using Proof By Algorithm that the
+permutation p_1 p_2 ... p_n can be obtained by passing 1 2 ... n
+through a stack. Namely, the stack A in Algorithm T.
+
+That answers the first half.
+
+As to the second half, if the permutation p_1 p_2 ... p_n is
+obtainable with a stack, then for some k, p_k = 1; the permutation
+splits into two halves around this p_k: the left half
+p_1 p_2 ... p_{k-1}, and the right half p_{k+1} p_{k+2} ... p_n.
+Since the entire permutation is obtainable with a stack, these two
+halves are as well. By induction, each corresponds to some binary tree.
+We connect these two as subtrees of a new root, yielding a binary
+tree, QED.
+
