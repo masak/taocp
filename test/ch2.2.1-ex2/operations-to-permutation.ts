@@ -14,9 +14,9 @@ test("letting through one train car", (t): void => {
 });
 
 test("cannot pop an empty stack", (t): void => {
-    t.throws((): number[] => opsToPerm([X]), CannotPopEmptyStack);
+    t.throws<CannotPopEmptyStack>((): number[] => opsToPerm([X]));
 
-    t.throws((): number[] => opsToPerm([S, X, X]), CannotPopEmptyStack);
+    t.throws<CannotPopEmptyStack>((): number[] => opsToPerm([S, X, X]));
 });
 
 test("letting through two train cars", (t): void => {
@@ -41,7 +41,7 @@ test("example 2/3 from the exercise", (t): void => {
 });
 
 test("cars left on the stack", (t): void => {
-    t.throws((): number[] => opsToPerm([S]), CarsLeftOnStack);
-    t.throws((): number[] => opsToPerm([S, X, S]), CarsLeftOnStack);
-    t.throws((): number[] => opsToPerm([S, S, X]), CarsLeftOnStack);
+    t.throws<CarsLeftOnStack>((): number[] => opsToPerm([S]));
+    t.throws<CarsLeftOnStack>((): number[] => opsToPerm([S, X, S]));
+    t.throws<CarsLeftOnStack>((): number[] => opsToPerm([S, S, X]));
 });
