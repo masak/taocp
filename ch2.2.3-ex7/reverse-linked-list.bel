@@ -3,15 +3,17 @@
 (def prs-linked-list (lst)
   (prs "<linked-list " lst!first ">"))
 
-(def reverse-linked-list (lst)
-  (with (prev nil
-         next nil)
-    (loop node lst!first next node
-      (set next (cdr node)    ; remember the next node so we can follow it
-           (cdr node) prev)   ; point backwards along the list instead of forwards
-           prev node))        ; for the next iteration, this node becomes the previous one
-    (set lst!first prev)))
+(def rev-linked-list (lst)
+  (let last (rev-linked-node lst!first)
+    (set lst!first last)))
 
+(def rev-linked-node (node (o prev))
+  (if node
+    (let next (cdr node)            ; remember the next node so we can follow it
+      (set (cdr node) prev)         ; point backwards along the list instead of forwards
+      (rev-linked-node next node))  ; recursively handle the rest of the list
+    prev))
+  
 (set lst (make linked-list '(1 2 3 4 5)))
-(reverse-linked-list lst)
+(rev-linked-list lst)
 (prn (prs-linked-list lst))
