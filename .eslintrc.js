@@ -16,5 +16,6 @@ module.exports = {
     },
     "plugins": ["@typescript-eslint"],
     "rules": {
+        "prefer-const": "off"
     }
 };

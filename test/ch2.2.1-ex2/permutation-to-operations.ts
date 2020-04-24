@@ -14,21 +14,21 @@ test("letting through one train car", (t): void => {
 });
 
 test("not a permutation", (t): void => {
-    t.throws(
+    t.throws<NotAPermutation>(
         (): Operation[] => permToOps([]),
-        NotAPermutation,
+        null,
         "Permutation can't be empty",
     );
 
-    t.throws(
+    t.throws<NotAPermutation>(
         (): Operation[] => permToOps([2, 3]),
-        NotAPermutation,
+        null,
         "Permutation can't be missing numbers",
     );
 
-    t.throws(
+    t.throws<NotAPermutation>(
         (): Operation[] => permToOps([1, 1]),
-        NotAPermutation,
+        null,
         "Permutation can't have duplicates",
     );
 });
