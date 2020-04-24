@@ -1,0 +1,52 @@
+Take again the tree from exercise 2 as an example. The two
+relevant orders from this tree are as follows:
+
+preorder
+    1 2 4 5 3 6 7
+
+inorder
+    4 2 5 1 6 3 7
+
+Now, let's "line them up" according to this rule: we emit
+an inorder node ASAP after we've seen it in the preorder.
+
+preorder    1 2 4     5     3 6     7
+inorder           4 2   5 1     6 3   7
+
+Reading them interleaved from left to right, we can now
+take the nodes from the "preorder stream" as meaning "under
+the current node, create a new node m", and the nodes from
+the "inorder stream" as meaning "go back to node n".
+
+(In the case of the terminal nodes, the "go back to"
+instructions are redundant and can be ignored.)
+
+This gives a way to reconstruct the binary tree from
+preorder/inorder information.
+
+As to preorder and postorder, the same trick can be used:
+
+preorder    1 2 4   5     3 6   7
+postorder         4   5 2     6   7 3 1
+
+But now the postorder stream should be taken to mean "go
+back to the node's parent". (The actual node carries no
+significance in the postorder stream, but just so happens
+to always be the node we're currently on.)
+
+Finally, with inorder and postorder:
+
+inorder     4   2 5     1 6   3 7
+postorder     4     5 2     6     7 3 1
+
+It looks bloody well impossible to construct a tree in a
+sensible way from those instructions... until you realize
+that you can read it off right-to-left, taking the "postorder
+stream" to mean "under the current node, create a new node m"
+(right-to-left), and the "inorder stream" to mean "go back
+to node n".
+
+This harks back a little bit to exercise 4, where we could
+think of "mirrored preorder" as postorder but backwards in
+time.
+
