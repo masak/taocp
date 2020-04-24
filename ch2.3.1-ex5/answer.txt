@@ -1,0 +1,48 @@
+Taking the tree from exercise 2 as an example, here's how the three
+orders would look on that tree:
+
+Preorder (1 2 4 5 3 6 7)
+    1··
+    10·
+    100
+    101
+    11·
+    110
+    111
+
+Inorder (4 2 5 1 3 6 7)
+    100
+    10·
+    101
+    1··
+    11·
+    110
+    111
+
+Postorder (4 5 2 6 7 3 1)
+    100
+    101
+    10·
+    110
+    111
+    11·
+    1··
+
+For clarity, the sequences for the nodes have been padded out with a "·"
+so that they all have the same length.
+
+Now, the rule to describe the three orders is this: nodes are sorted in
+lexicographical order of their sequence. "0" sorts before "1". But:
+
+- In preorder, "·" sorts before "0".
+- In inorder, "·" sorts between "0" and "1".
+- In postorder, "·" sorts after "1".
+
+By way of motivation, "0" already has the meaning of "the left subtree"
+and "1" of "the right subtree"; "·" sort of takes on the meaning of
+"visit the root". How to sort "·" relative to "0" and "1" then
+corresponds exactly to when to visit the root in the three traversals.
+
+In this sequence, the first digit of a node is always "1". In fact, the
+above scheme would work even if it were "0", or "·", or omitted altogether.
+
