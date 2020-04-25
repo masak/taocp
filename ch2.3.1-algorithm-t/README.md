@@ -331,3 +331,14 @@ function traverse(T, visit) {
 ```
 
 In summary, Algorithm T as proposed by Knuth can be derived by CPS-transforming the recursive formulation of in-order traversal.
+
+Looking ahead a bit at exercises 12 and 13, these can get the same CPS treatment as Algorithm T:
+
+* For the preorder traversal, things are largely the same.
+  We can visit the node before pushing it on the stack, but we still need to put it on the stack in order to later traverse its right subtree.
+
+* For the postorder traversal, there's a _twist_.
+  Now we need _two_ stacks: one for remembering a node while we traverse its left subtree, and one for remembering a node while we traverse its _right_ subtree.
+  We could also do it with a single stack, if we push the node along with its `state` information;
+  but this time around, there is no simplifying step that lets us elimiate `state` from the data on the stack.
+
