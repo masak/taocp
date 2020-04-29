@@ -26,19 +26,20 @@ After doing this myself, it feels like Knuth's major contribution has been to do
 Instead of worrying about exactly a continuation is, let's describe this style:
 You identify every "gap" between statements, and give it a state number.
 
-```typescript
-function traverse(btree, visit) {
-    // state 1
-    if (btree !== Λ) {
-        // state 2
-        traverse(btree.llink, visit);
-        // state 3
-        visit(btree);
-        // state 4
-        traverse(btree.rlink, visit);
-    }
-    // state 5
-}
+```diff
+@@ -1,7 +1,12 @@
+ function traverse(btree, visit) {
++    // state 1
+     if (btree !== Λ) {
++        // state 2
+         traverse(btree.llink, visit);
++        // state 3
+         visit(btree);
++        // state 4
+         traverse(btree.rlink, visit);
+     }
++    // state 5
+ }
 ```
 
 (The "gap" at the end of the `if` block does not need its own state;
@@ -48,31 +49,32 @@ Then, instead of the runtime taking us between these states, we do it ourselves.
 (We "privatise" control flow, as it were.)
 Perhaps the simplest way to do that is via a switch statement in a loop:
 
-```typescript
-function traverse(btree, visit) {
-    let state = 1;
-    while (true) {
-        switch (state) {
-            case 1:
-                state = btree === Λ ? 5 : 2;
-                break;
-            case 2:
-                traverse(btree.llink, visit);
-                state = 3;
-                break;
-            case 3:
-                visit(btree);
-                state = 4;
-                break;
-            case 4:
-                traverse(btree.rlink, visit);
-                state = 5;
-                break;
-            case 5:
-                return;
-        }
-    }
-}
+```diff
+@@ -1,5 +1,24 @@
+ function traverse(btree, visit) {
++    let state = 1;
++    while (true) {
++        switch (state) {
++            case 1:
++                state = btree === Λ ? 5 : 2;
++                break;
++            case 2:
+                 traverse(btree.llink, visit);
++                state = 3;
++                break;
++            case 3:
+                 visit(btree);
++                state = 4;
++                break;
++            case 4:
+                 traverse(btree.rlink, visit);
++                state = 5;
++                break;
++            case 5:
++                return;
++        }
++    }
+ }
 ```
 
 The code is longer and more explicit, but it's the same code.
@@ -94,38 +96,41 @@ The object stored on the stack could well be called "the continuation"; it has w
 The `return` cheat that we allowed ourselves, we're now only really allowed to use when the stack is empty;
 this is because we can only truly return from the top level of the recursive call hierarchy.
 
-```typescript
-function traverse(btree, visit) {
-    let state = 1;
-    let manualStack = [];
-    while (true) {
-        switch (state) {
-            case 1:
-                state = btree === Λ ? 5 : 2;
-                break;
-            case 2:
-                manualStack.push({ btree, state: 3 });
-                btree = btree.llink;
-                state = 1;
-                break;
-            case 3:
-                visit(btree);
-                state = 4;
-                break;
-            case 4:
-                manualStack.push({ btree, state: 5 });
-                btree = btree.rlink;
-                state = 1;
-                break;
-            case 5:
-                if (manualStack.length === 0) {
-                    return;
-                }
-                { btree, state } = manualStack.pop();
-                break;
-        }
-    }
-}
+```diff
+@@ -1,4 +1,5 @@
+ function traverse(btree, visit) {
+     let state = 1;
++    let manualStack = [];
+     while (true) {
+         switch (state) {
+@@ -7,6 +8,7 @@
+                 break;
+             case 2:
+-                traverse(btree.llink, visit);
+-                state = 3;
++                manualStack.push({ btree, state: 3 });
++                btree = btree.llink;
++                state = 1;
+                 break;
+             case 3:
+@@ -15,9 +17,14 @@
+                 break;
+             case 4:
+-                traverse(btree.rlink, visit);
+-                state = 5;
++                manualStack.push({ btree, state: 5 });
++                btree = btree.rlink;
++                state = 1;
+                 break;
+             case 5:
+-                return;
++                if (manualStack.length === 0) {
++                    return;
++                }
++                { btree, state } = manualStack.pop();
++                break;
+         }
+     }
 ```
 
 Now let's clean up.
@@ -135,109 +140,53 @@ the only thing we do if we find such a stack value in state 5 is to loop straigh
 We're pushing with no recipient in the other end.
 So let's stop pushing those values when recursing down the right subtree.
 
-```typescript
-function traverse(btree, visit) {
-    let state = 1;
-    let manualStack = [];
-    while (true) {
-        switch (state) {
-            case 1:
-                state = btree === Λ ? 5 : 2;
-                break;
-            case 2:
-                manualStack.push({ btree, state: 3 });
-                btree = btree.llink;
-                state = 1;
-                break;
-            case 3:
-                visit(btree);
-                state = 4;
-                break;
-            case 4:
-                btree = btree.rlink;
-                state = 1;
-                break;
-            case 5:
-                if (manualStack.length === 0) {
-                    return;
-                }
-                { btree, state } = manualStack.pop();
-                break;
-        }
-    }
-}
+```diff
+@@ -17,5 +17,4 @@
+                 break;
+             case 4:
+-                manualStack.push({ btree, state: 5 });
+                 btree = btree.rlink;
+                 state = 1;
 ```
 
 But of course, now we could immediately jump into state 3 from state 5, since the only thing we ever push are left subtrees.
 And since that's the case, we don't even need to signal it anymore:
 
-```typescript
-function traverse(btree, visit) {
-    let state = 1;
-    let manualStack = [];
-    while (true) {
-        switch (state) {
-            case 1:
-                state = btree !== Λ ? 2 : 5;
-                break;
-            case 2:
-                manualStack.push(btree);
-                btree = btree.llink;
-                state = 1;
-                break;
-            case 3:
-                visit(btree);
-                state = 4;
-                break;
-            case 4:
-                btree = btree.rlink;
-                state = 1;
-                break;
-            case 5:
-                if (manualStack.length === 0) {
-                    return;
-                }
-                btree = manualStack.pop();
-                state = 3;
-                break;
-        }
-    }
-}
+```diff
+@@ -5,8 +5,8 @@
+         switch (state) {
+             case 1:
+-                state = btree === Λ ? 5 : 2;
++                state = btree !== Λ ? 2 : 5;
+                 break;
+             case 2:
+-                manualStack.push({ btree, state: 3 });
++                manualStack.push(btree);
+                 btree = btree.llink;
+                 state = 1;
+@@ -24,5 +24,6 @@
+                     return;
+                 }
+-                { btree, state } = manualStack.pop();
++                btree = manualStack.pop();
++                state = 3;
+                 break;
+         }
 ```
 
 (Could we have foreseen this simplification? Yes, a Scheme programmer would have taken one look at the original recursive formulation and told you that the recursive call for the right subtree is in "tail position". Which is exactly when [we can optimize away the recursion](http://lambda-the-ultimate.org/node/1331#comment-15125).)
 
 State 4 can be "squashed" into state 3, since state 3 is unique in jumping to state 4:
 
-```typescript
-function traverse(btree, visit) {
-    let state = 1;
-    let manualStack = [];
-    while (true) {
-        switch (state) {
-            case 1:
-                state = btree !== Λ ? 2 : 5;
-                break;
-            case 2:
-                manualStack.push(btree);
-                btree = btree.llink;
-                state = 1;
-                break;
-            case 3:
-                visit(btree);
-                btree = btree.rlink;
-                state = 1;
-                break;
-            case 5:
-                if (manualStack.length === 0) {
-                    return;
-                }
-                btree = manualStack.pop();
-                state = 3;
-                break;
-        }
-    }
-}
+```diff
+@@ -14,7 +14,4 @@
+             case 3:
+                 visit(btree);
+-                state = 4;
+-                break;
+-            case 4:
+                 btree = btree.rlink;
+                 state = 1;
 ```
 
 If we rename states and variables, introduce an extra "initializing" state, and re-order the states, we arrive at Algorithm T:
