@@ -50,12 +50,13 @@ Then, instead of the runtime taking us between these states, we do it ourselves.
 Perhaps the simplest way to do that is via a switch statement in a loop:
 
 ```diff
-@@ -1,5 +1,24 @@
+@@ -1,7 +1,24 @@
  function traverse(btree, visit) {
 +    let state = 1;
 +    while (true) {
 +        switch (state) {
 +            case 1:
+-    if (btree !== Λ) {
 +                state = btree === Λ ? 5 : 2;
 +                break;
 +            case 2:
@@ -73,7 +74,7 @@ Perhaps the simplest way to do that is via a switch statement in a loop:
 +            case 5:
 +                return;
 +        }
-+    }
+     }
  }
 ```
 
