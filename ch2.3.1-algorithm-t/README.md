@@ -154,11 +154,7 @@ But of course, now we could immediately jump into state 3 from state 5, since th
 And since that's the case, we don't even need to signal it anymore:
 
 ```diff
-@@ -5,8 +5,8 @@
-         switch (state) {
-             case 1:
--                state = btree === Λ ? 5 : 2;
-+                state = btree !== Λ ? 2 : 5;
+@@ -7,6 +7,6 @@
                  break;
              case 2:
 -                manualStack.push({ btree, state: 3 });
