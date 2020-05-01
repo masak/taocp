@@ -1,35 +1,23 @@
-The statement is true.
+The statement is true. This can be seen by induction on the tree.
 
-In order to see why, consider the definition of the three orders:
+For an empty tree, the statement is vacuously true.
+For a tree with only one node (which is therefore a leaf node), the statement is trivially true.
+
+For any bigger tree, the three traversals have this in common -- they all visit the left subtree before visiting the right subtree:
 
 Preorder traversal
-    Visit the root
+    (Visit the root)
     Traverse the left subtree
     Traverse the right subtree
 
 Inorder traversal
     Traverse the left subtree
-    Visit the root
+    (Visit the root)
     Traverse the right subtree
 
 Postorder traversal
     Traverse the left subtree
     Traverse the right subtree
-    Visit the root
+    (Visit the root)
 
-And note the following convenient facts:
-
-- For internal nodes, we can disregard the "visit the root" case
-  (since we don't care about the order of internal nodes).
-
-- When we do, in those cases the three algorithms are identical.
-
-- For the terminal nodes, we can disregard the two "traverse the
-  left/right subtree" steps (since those will both be Λ anyway).
-
-- When we do, in those cases the three algorithms are again identical.
-
-Taken together: when we suppress visiting all the internal nodes,
-the nodes that _are_ visited, the terminal nodes, will be visited in
-the same order by the preorder, inorder, and postorder traversals.
-
+If (by the inductive hypothesis) we assume that the statement is true for the subtrees, it also follows for the whole tree.
