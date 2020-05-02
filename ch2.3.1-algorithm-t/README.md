@@ -16,7 +16,7 @@ About the only bad thing I can say about this implementation is that it could ov
 Not going to happen with a balanced binary tree, but could well happen with a pathological one, such as a couple thousand rlinks in a row.
 
 Is there a way we could translate the above recursive version into the iterative version in Algorithm T?
-Preferably, you know, step by step.
+Preferably in small steps, where each step can be shown not to change the semantics.
 How _do_ you do that?
 
 As it turns out, _yes_, there is a way to mechanically transform this code.
