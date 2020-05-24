@@ -14,6 +14,6 @@
       (rev-linked-node next node))  ; recursively handle the rest of the list
     prev))
   
-(set lst (make linked-list '(1 2 3 4 5)))
+(set lst (make linked-list first '(1 2 3 4 5)))
 (rev-linked-list lst)
-(prn (prs-linked-list lst))
+(pr (prs-linked-list lst) \lf)
