@@ -1,11 +1,11 @@
-(tem linked-list first nil)
+(tem linked-list contents nil)
 
 (def prs-linked-list (lst)
-  (prs "<linked-list " lst!first ">"))
+  (prs "<linked-list " lst!contents ">"))
 
 (def rev-linked-list (lst)
-  (let last (rev-linked-node lst!first)
-    (set lst!first last)))
+  (let last (rev-linked-node lst!contents)
+    (set lst!contents last)))
 
 (def rev-linked-node (node (o prev))
   (if node
@@ -14,6 +14,6 @@
       (rev-linked-node next node))  ; recursively handle the rest of the list
     prev))
   
-(set lst (make linked-list first '(1 2 3 4 5)))
+(set lst (make linked-list contents '(1 2 3 4 5)))
 (rev-linked-list lst)
 (pr (prs-linked-list lst) \lf)
