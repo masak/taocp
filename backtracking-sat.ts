@@ -1,21 +1,23 @@
 type Variable = number;
 
-interface Negated<T> {
-    (): Variable;
+type Literal = {
+    variable: Variable,
+    isPositive: boolean,
+};
+
+function literal(variable: Variable): Literal {
+    return { variable, isPositive: true };
 }
 
-type Literal = Variable | Negated<Variable>;
-
-function isNegated(v: Literal): v is Negated<Variable> {
-    return typeof v === "function";
+function negatedLiteral(variable: Variable): Literal {
+    return { variable, isPositive: false };
 }
 
 function not(v: Literal): Literal {
-    if (isNegated(v)) {
-        return v();
-    } else {
-        return () => v;
-    }
+    return {
+        variable: v.variable,
+        isPositive: !v.isPositive,
+    };
 }
 
 type Clause = Literal[];
@@ -34,8 +36,24 @@ function pickLiteralIn(F: Formula): Literal {
     return F[0][0];
 }
 
+function literalNotEqualTo(l1: Literal) {
+    return (l2: Literal) => (
+        l1.variable !== l2.variable
+        || l1.isPositive !== l2.isPositive
+    );
+}
+
+function doesNotContain(l: Literal) {
+    return (C: Clause) => C.every(literalNotEqualTo(l));
+}
+
+function removeLiteral(l: Literal) {
+    return (C: Clause) => C.filter(literalNotEqualTo(l));
+}
+
 function formulaGiven(F: Formula, l: Literal): Formula {
-    // xxx
+    return F.filter(doesNotContain(l))
+        .map(removeLiteral(not(l)));
 }
 
 type Solution = Literal[];
@@ -82,11 +100,23 @@ function satisfy(F: Formula): Solution | NoSolution {
     }
 }
 
-let F: Formula = [
-    [1, not(2)],
-    [2, 3],
-    [not(1), not(3)],
-    [not(1), not(2), 3],
-];
+function parseClause(signedNums: number[]): Clause {
+    return signedNums.map((n) => {
+        return n > 0
+            ? literal(n)
+            : negatedLiteral(Math.abs(n));
+    });
+}
+
+function parseFormula(...clauses: number[][]): Formula {
+    return clauses.map(parseClause);
+}
+
+let F: Formula = parseFormula(
+    [1, -2],
+    [2, -3],
+    [-1, -3],
+    [-1, -2, 3],
+);
 
 console.log(satisfy(F));
