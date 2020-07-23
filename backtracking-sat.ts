@@ -114,7 +114,7 @@ function parseFormula(...clauses: number[][]): Formula {
 
 let F: Formula = parseFormula(
     [1, -2],
-    [2, -3],
+    [2, 3],
     [-1, -3],
     [-1, -2, 3],
 );
