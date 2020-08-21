@@ -8,7 +8,7 @@
     (set lst!contents last)))
 
 (def rev-linked-node (node (o prev))
-  (if (not node)
+  (if (no node)
       nil
       (let next (cdr node)            ; remember the next node so we can follow it
         (set (cdr node) prev)         ; point backwards along the list instead of forwards
