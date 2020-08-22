@@ -4,16 +4,15 @@
   (prs "<linked-list " lst!contents ">"))
 
 (def rev-linked-list (lst)
-  (let last (rev-linked-node lst!contents)
+  (let last (rev-linked-node lst!contents nil)
     (set lst!contents last)))
 
-(def rev-linked-node (node (o prev))
+(def rev-linked-node (node prev)
   (if (no node)
-      nil
-      (let next (cdr node)            ; remember the next node so we can follow it
-        (set (cdr node) prev)         ; point backwards along the list instead of forwards
-        (rev-linked-node next node))  ; recursively handle the rest of the list
-      prev))
+      prev
+      (let next (cdr node)              ; remember the next node so we can follow it
+        (set (cdr node) prev)           ; point backwards along the list instead of forwards
+        (rev-linked-node next node))))  ; recursively handle the rest of the list
  
 (set lst (make linked-list contents '(1 2 3 4 5)))
 (rev-linked-list lst)
