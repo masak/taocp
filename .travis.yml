@@ -1,9 +1,0 @@
-language: node_js
-node_js:
-  - "11"
-before_script:
-  - npm install
-script:
-  - npm test
-  - npm run lint
-  - npx prettier --check ch2.2.3-ex7/*.ts test/ch2.2.3-ex7/*.ts
