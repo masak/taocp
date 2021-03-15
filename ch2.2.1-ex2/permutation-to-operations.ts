@@ -30,11 +30,11 @@ export class CannotOutputInOriginalOrder extends Error {
     }
 
     public toString(): string {
-        return `Can't output ${this.firstNumber} then ${
-            this.secondNumber
-        }; the former was stacked in order to output ${
-            this.previousHighNumber
-        }`;
+        return (
+            `Can't output ${this.firstNumber} then ` +
+            `${this.secondNumber}; the former was stacked ` +
+            `in order to output ${this.previousHighNumber}`
+        );
     }
 }
 
