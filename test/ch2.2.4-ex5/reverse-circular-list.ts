@@ -1,6 +1,6 @@
 import test from "ava";
-import { makeCircularList } from "../../ch2.2.4-ex5/circular-list";
-import { reverseCircularList } from "../../ch2.2.4-ex5/reverse-circular-list";
+import { makeCircularList } from "../../src/ch2.2.4-ex5/circular-list";
+import { reverseCircularList } from "../../src/ch2.2.4-ex5/reverse-circular-list";
 
 test("reversing an empty list is an empty list", (t): void => {
     let emptyList = makeCircularList();

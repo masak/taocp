@@ -1,10 +1,10 @@
 import test from "ava";
-import { Operation } from "../../ch2.2.1-ex2/operations";
+import { Operation } from "../../src/ch2.2.1-ex2/operations";
 import {
     opsToPerm,
     CannotPopEmptyStack,
     CarsLeftOnStack,
-} from "../../ch2.2.1-ex2/operations-to-permutation";
+} from "../../src/ch2.2.1-ex2/operations-to-permutation";
 
 const S = Operation.S;
 const X = Operation.X;

@@ -1,6 +1,6 @@
 import test from "ava";
-import { Operation } from "../../ch2.2.1-ex2/operations";
-import { sequenceIsAdmissible } from "../../ch2.2.1-ex3/admissible";
+import { Operation } from "../../src/ch2.2.1-ex2/operations";
+import { sequenceIsAdmissible } from "../../src/ch2.2.1-ex3/admissible";
 
 const S = Operation.S;
 const X = Operation.X;
