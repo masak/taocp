@@ -3,7 +3,7 @@ import {
     topologicalSort,
     PartialHypothesisViolation,
     OutOfBounds,
-} from "../../src/ch2.2.3-algorithm-t/topological-sort";
+} from "../../../src/ch2.2.3/algorithm-t/topological-sort";
 
 test("topologically sorting zero elements", (t): void => {
     t.deepEqual(topologicalSort(0, []), [0]);

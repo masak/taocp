@@ -1,4 +1,4 @@
-import { Operation } from "../ch2.2.1-ex2/operations";
+import { Operation } from "../ex2/operations";
 
 export function sequenceIsAdmissible(sequence: Operation[]): boolean {
     let stackSize = 0;

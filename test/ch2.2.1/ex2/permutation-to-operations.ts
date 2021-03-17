@@ -1,10 +1,10 @@
 import test from "ava";
-import { Operation } from "../../src/ch2.2.1-ex2/operations";
+import { Operation } from "../../../src/ch2.2.1/ex2/operations";
 import {
     NotAPermutation,
     CannotOutputInOriginalOrder,
     permToOps,
-} from "../../src/ch2.2.1-ex2/permutation-to-operations";
+} from "../../../src/ch2.2.1/ex2/permutation-to-operations";
 
 const S = Operation.S;
 const X = Operation.X;
