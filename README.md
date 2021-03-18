@@ -3,3 +3,6 @@
 * [Setup instructions](https://github.com/masak/taocp/blob/master/setup/README.md)
   for the languages used in this repository
 
+* [The exercises](https://github.com/masak/taocp/blob/master/src/README.md) with
+  links to everything
+  
