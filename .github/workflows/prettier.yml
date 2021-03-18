@@ -29,5 +29,5 @@ jobs:
         run: npm install
 
       - name: Check with prettier
-        run: npx prettier --check ch2.2.1-ex2/*.ts test/ch2.2.1-ex2/*.ts ch2.2.1-ex3/*.ts test/ch2.2.1-ex3/*.ts ch2.2.3-ex7/*.ts test/ch2.2.3-ex7/*.ts ch2.2.4-ex5/*.ts
+        run: npx prettier --check src/ch2.2.1/ex2/*.ts test/ch2.2.1/ex2/*.ts src/ch2.2.1/ex3/*.ts test/ch2.2.1/ex3/*.ts src/ch2.2.3/ex7/*.ts test/ch2.2.3/ex7/*.ts src/ch2.2.4/ex5/*.ts
 
