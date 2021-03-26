@@ -7,45 +7,37 @@ export interface ListNode<T> {
     link: ListNode<T>;
 }
 
-interface ProtoListNode<T> {
-    info: T;
-    link: ProtoListNode<T> | NullLink;
-}
-
 export enum NullLink {
     NULL,
 }
 export const Λ = NullLink.NULL;
 
-function isProtoListNode<T>(
-    n: ProtoListNode<T> | NullLink,
-): n is ProtoListNode<T> {
-    return n !== Λ;
+function nodePointingToItself<T>(info: T): ListNode<T> {
+    let node = { info, link: (Λ as any) as ListNode<T> };
+    node.link = node;
+
+    return node;
 }
 
 // Builds a circular list from a set of values. Just a convenience
 // function so that we don't have to write the object literals out.
 export function makeCircularList<T>(...values: T[]): CircularList<T> {
-    let rightmostNode: ProtoListNode<T> | NullLink = Λ;
-    let leftmostNode: ProtoListNode<T> | NullLink = values.reduceRight(
-        (
-            nextNode: ProtoListNode<T> | NullLink,
-            info: T,
-        ): ProtoListNode<T> | NullLink => {
-            let newNode = {
-                info,
-                link: nextNode,
-            };
-            rightmostNode = rightmostNode === Λ ? newNode : rightmostNode;
-            return newNode;
-        },
-        Λ, // overwritten below
-    );
-    // At this point, `rightmostNode`, if it was ever set, will have
-    // its .link pointing to Λ. We want it to instead point to `leftmostNode`.
-    if (isProtoListNode(rightmostNode)) {
-        rightmostNode.link = leftmostNode;
+    if (values.length === 0) {
+        return { ptr: Λ };
     }
+
+    let rightmostNode = nodePointingToItself(values[values.length - 1]);
+
+    let leftmostNode = values.slice(0, values.length - 1).reduceRight(
+        (nextNode: ListNode<T>, info: T): ListNode<T> => ({
+            info,
+            link: nextNode,
+        }),
+        rightmostNode,
+    );
+
+    rightmostNode.link = leftmostNode;
+
     return {
         ptr: rightmostNode,
     };
