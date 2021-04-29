@@ -92,7 +92,7 @@ function flatMap<T, U>(array: Array<T>, fn: (t: T) => Array<U>): Array<U> {
     return result;
 }
 
-function clauseTable(F: Formula): ClauseTable {
+function buildClauseTable(F: Formula): ClauseTable {
     let m = F.length;
     let cells: Array<Cell> = [emptyCell(), emptyCell()];
     let n = Math.max(...flatMap(F, (clause) => clause.map((literal) => literal.n)));
@@ -164,4 +164,4 @@ function clauseTable(F: Formula): ClauseTable {
     return table;
 }
 
-console.log(clauseTable(R));
+console.log(buildClauseTable(R));
