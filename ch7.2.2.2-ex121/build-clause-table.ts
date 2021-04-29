@@ -23,7 +23,7 @@ let [[p1, n1], [p2, n2], [p3, n3], [p4, n4]] = variables(4);
 type Clause = Array<Literal>;
 type Formula = Array<Clause>;
 
-let R: Array<Clause> = [
+let R: Formula = [
     [p1, p2, n3],
     [p2, p3, n4],
     [p3, p4, p1],
