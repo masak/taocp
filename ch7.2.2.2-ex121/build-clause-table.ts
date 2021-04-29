@@ -110,7 +110,7 @@ function buildClauseTable(F: Formula): ClauseTable {
         cells.push(positiveLiteralCell);
 
         let negativeLiteralCell: Cell = {
-            literal: { n: i, isPositive: true },
+            literal: { n: i, isPositive: false },
             headerIndex: 0,
             backLink: null,
             forwardLink: null,
