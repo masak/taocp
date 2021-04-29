@@ -10,15 +10,15 @@ function variable(n: number): [Literal, Literal] {
     ];
 }
 
-function variables(n: number): Array<[Literal, Literal]> {
-    let result: Array<[Literal, Literal]> = [];
-    for (let i = 1; i <= n; i++) {
-        result.push(variable(i));
+function* variables(): Generator<[Literal, Literal]> {
+    let i = 1;
+    while (true) {
+        yield variable(i);
+        ++i;
     }
-    return result;
 }
 
-let [[p1, n1], [p2, n2], [p3, n3], [p4, n4]] = variables(4);
+let [[p1, n1], [p2, n2], [p3, n3], [p4, n4]] = variables();
 
 type Clause = Array<Literal>;
 type Formula = Array<Clause>;
