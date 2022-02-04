@@ -1,8 +1,8 @@
 {
         "scripts": {
                 "test": "tsc && ava",
-                "lint": "eslint src/ch2.2.1/ex2/*.ts test/ch2.2.1/ex2/*.ts src/ch2.2.1/ex3/*.ts test/ch2.2.1/ex3/*.ts src/ch2.2.3/algorithm-t/*.ts test/ch2.2.3/algorithm-t/*.ts src/ch2.2.3/ex7/*.ts test/ch2.2.3/ex7/*.ts src/ch2.2.4/ex5/*.ts",
-                "prettier": "prettier --write src/ch2.2.1/ex2/*.ts test/ch2.2.1/ex2/*.ts src/ch2.2.1/ex3/*.ts test/ch2.2.1/ex3/*.ts src/ch2.2.3/algorithm-t/*.ts test/ch2.2.3/algorithm-t/*.ts src/ch2.2.3/ex7/*.ts test/ch2.2.3/ex7/*.ts src/ch2.2.4/ex5/*.ts"
+                "lint": "eslint src/ch2.2.1/ex2/*.ts test/ch2.2.1/ex2/*.ts src/ch2.2.1/ex3/*.ts test/ch2.2.1/ex3/*.ts src/ch2.2.3/algorithm-t/*.ts test/ch2.2.3/algorithm-t/*.ts src/ch2.2.3/ex7/*.ts test/ch2.2.3/ex7/*.ts src/ch2.2.4/ex5/*.ts src/ch2.3.1-algorithm-t/*.ts",
+                "prettier": "prettier --write src/ch2.2.1/ex2/*.ts test/ch2.2.1/ex2/*.ts src/ch2.2.1/ex3/*.ts test/ch2.2.1/ex3/*.ts src/ch2.2.3/algorithm-t/*.ts test/ch2.2.3/algorithm-t/*.ts src/ch2.2.3/ex7/*.ts test/ch2.2.3/ex7/*.ts src/ch2.2.4/ex5/*.ts src/ch2.3.1-algorithm-t/*.ts"
         },
         "devDependencies": {
                 "@typescript-eslint/eslint-plugin": "5.10.2",
