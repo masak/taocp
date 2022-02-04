@@ -1,0 +1,39 @@
+(tem linked-list contents nil)
+
+(def prs-linked-list (lst)
+  (prs "<linked-list " lst!contents ">"))
+
+; Reverses a linked list _in place_; that is, returns the same
+; list record but with its elements reversed. The `first` link
+; now points to the element that used to be _last_, and all the
+; other links between the nodes have been inverted.
+;
+; Here is an algorithm for the function, written in the style of
+; TAoCP:
+;
+;     Algorithm I (Invert a linked list). The linked list in L will be
+;     reversed in place.
+;
+;     I1. [Initialize] Set P ← Λ, C ← FIRST[L].
+;
+;     I2. [End of list?] If C is Λ, go to I4.
+;
+;     I3. [Point link backwards] Set N ← LINK[C], LINK[C] ← P, P ← C,
+;         C ← N. Go back to I2.
+;
+;     I4. [Point first node] Set FIRST[L] ← P. ■
+(def rev-linked-list (lst)
+  (let last (rev-linked-node lst!contents nil)
+    (set lst!contents last)))
+
+(def rev-linked-node (node prev)
+  (if (no node)
+      prev
+      (let next (cdr node)              ; remember the next node so we can follow it
+        (set (cdr node) prev)           ; point backwards along the list instead of forwards
+        (rev-linked-node next node))))  ; recursively handle the rest of the list
+ 
+(set lst (make linked-list contents '(1 2 3 4 5)))
+(rev-linked-list lst)
+(pr (prs-linked-list lst) \lf)
+
