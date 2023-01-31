@@ -288,3 +288,4 @@ Looking ahead a bit at exercises 12 and 13, these can get the same CPS treatment
   We could also do it with a single stack, if we push the node along with its `state` information;
   but this time around, there is no simplifying step that lets us elimiate `state` from the data on the stack.
 
+_Later addendum_: Bob Nystrom mentions this CPS transformation in his blog post [Iteration Inside and Out](https://journal.stuffwithstuff.com/2013/01/13/iteration-inside-and-out/).
