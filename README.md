@@ -105,7 +105,7 @@ exercise 14
 
 #### 2.2.3 Linked Allocation
 
-[Algorithm T](http://github.com/masak/taocp/tree/master/src/ch2.3.1/algorithm-t/)
+[Algorithm T](http://github.com/masak/taocp/tree/master/src/ch2.2.3/algorithm-t/)
 
 exercise 1
 exercise 2
