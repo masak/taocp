@@ -26,3 +26,12 @@ produced (among other sentences) the following:
     green trees lived light words.
     round miles added black words.
 
+But when I saw the answer under Knuth's solutions, I
+figured that I could easily produce a longer sentence:
+
+    eight happy river toads liked heavy metal music,
+    doing dance moves until girls tried their party,
+    while women shook their boobs among fresh bread,
+    until seven adult poets cried large tears, alone.
+
+
