@@ -1,0 +1,28 @@
+Just scanning the first score of common words, I get
+
+    would these words sound great?
+
+Which already kind of solves the problem.
+
+Trying a bit harder, I get
+
+    every great story began under their quiet house.
+
+And
+
+    birds still lived about their place.
+
+And
+
+    short hands write funny parts.
+
+I also wrote a simple kind of madlibs generator, and it
+produced (among other sentences) the following:
+
+    words built parts.
+    trees began miles.
+    words start words.
+    major lines place clear trees.
+    green trees lived light words.
+    round miles added black words.
+

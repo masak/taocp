@@ -1,0 +1,39 @@
+#! /usr/bin/perl
+use 5.006;
+use strict;
+use warnings;
+
+my @words;
+
+sub roll {
+    my ($array_ref) = @_;
+
+    my $length = scalar @$array_ref;
+    my $random_index = int(rand() * $length);
+    return $array_ref->[$random_index];
+}
+
+sub choose_word_from {
+    my ($filename) = @_;
+
+    open my $FILE, "<", $filename
+        or die "Couldn't open $filename for reading: $!";
+
+    my @all_words;
+    while (<$FILE>) {
+        chomp;
+        next if /^\s*$/;
+        push @all_words, $_;
+    }
+
+    close $FILE;
+
+    return roll(\@all_words);
+}
+
+for my $filename (@ARGV) {
+    push @words, choose_word_from($filename);
+}
+
+print(join(" ", @words), "\n");
+

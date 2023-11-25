@@ -1,0 +1,7 @@
+words
+parts
+miles
+lines
+trees
+hands
+
