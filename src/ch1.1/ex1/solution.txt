@@ -1,0 +1,28 @@
+The solution is a straightforward extension of the two-variable case.
+
+    t <- a
+    a <- b
+    b <- c
+    c <- d
+    d <- t
+
+In words, each variable gets assigned to the next one. At the start, the
+extra `t` variable holds the old value of `a` (the first variable),
+because this value needs to be saved till the end so it can go into `d`
+(the last variable). In this sense, the added `t` (temporary) variable
+"ties the knot", letting us both overwrite `a` at the start and assigning
+its old value to `d` at the end.
+
+The exercise doesn't ask to solve the case of permuting N variables, but
+the above technique easily generalizes. Find all the cycles of length > 1
+of the permutation, and for each cycle (x1, x2, ..., xn-1, xn), do this:
+
+    t <- x1
+    x1 <- x2
+    ...
+    xn-1 <- xn
+    xn <- t
+
+Cycles of length 1 do not need to be handled, since they correspond to
+variables which already have the desired value.
+

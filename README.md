@@ -10,6 +10,18 @@
 
 ## Chapter 1 &mdash; Basic Concepts
 
+### 1.1 Algorithms
+
+[ex1](https://github.com/masak/taocp/tree/master/src/ch1.1/ex1/)
+ex2
+ex3
+ex4
+ex5
+ex6
+ex7
+ex8
+ex9
+
 ### 1.2 Mathematical Preliminaries
 
 #### 1.2.1 Mathematical Induction
@@ -230,7 +242,7 @@ ex22
 ex23
 ex24
 ex25
-ex26
+[ex26](http://github.com/masak/taocp/tree/master/src/ch7/ex26)
 ex27
 ex28
 ex29

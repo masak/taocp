@@ -2,6 +2,7 @@
 
 ## Mathematical Preliminaries
 
+* [Algorithms](https://github.com/masak/taocp/blob/master/src/ch1.1/README.md)
 * [Mathematical Induction](https://github.com/masak/taocp/blob/master/src/ch1.2.1/README.md)
 * [Integer Functions and Elementary Number Theory](https://github.com/masak/taocp/blob/master/src/ch1.2.4/README.md)
 
