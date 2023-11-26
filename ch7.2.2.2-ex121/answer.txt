@@ -1,0 +1,20 @@
+A3 [Remove]: Tracking a "pointer" p from F[lbar] to lbar via F pointers,
+decrease SIZE[C[p]]. This succeeds and proceeds to A4 if at no point,
+a SIZE[C[p]] goes to 0. If that happens, put everything back by re-increasing
+SIZE[C[p]] again, following B pointers back to lbar -- this last step assures
+a kind of "transactional rollback", the hard way.
+
+A4 [Deactivate]: Tracking a pointer p around from F[l] to l via F pointers,
+for each cell i that precedes p in that clause, remove the cell using
+dancing-links removal: F[B[i]] = F[i], B[F[i]] = B[i], and also decrease that
+literal's count C[L[i]] by 1.
+
+A7 [Reactivate]: This step is the mirror image of A4. Tracking a pointer p
+around from B[l] to l via B pointers, for each cell i that precedes p (but in
+reverse order), increase the cell's literal's count C[L[i]] by 1, and also
+re-insert the cell using dancing-links insertion: B[F[i]] = i, F[B[i]] = i.
+
+A8 [Unremove]: This step is the mirror image of A3, except that there's no
+need to consider transactional rollback since A3 succeeded. Still, this step
+looks the same as that transactional rollback: tracking a pointer p from
+B[lbar] to lbar via B pointers, increase SIZE[C[p]].
