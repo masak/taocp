@@ -1,0 +1,13 @@
+There are only two possible shapes for a tree of three nodes:
+
+    o       o
+    |      / \
+    o     o   o
+    |
+    o
+
+For the first shape, there are 3! = 6 possible assignments of the labels,
+but for the second shape, there are only 3!/2 = 3 possible assignments
+(because the two children are unordered and indistinguishable). In total
+there are 6 + 3 = 9 oriented trees.
+

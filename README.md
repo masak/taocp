@@ -174,7 +174,7 @@ ex18
 ### 2.3 Trees
 
 [ex1](http://github.com/masak/taocp/tree/master/src/ch2.3/ex1)
-ex2
+[ex2](http://github.com/masak/taocp/tree/master/src/ch2.3/ex2)
 ex3
 ex4
 ex5
