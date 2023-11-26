@@ -1,0 +1,11 @@
+There are only two possible shapes for a tree of three nodes:
+
+    o       o
+    |      / \
+    o     o   o
+    |
+    o
+
+We can assign labels in both of these cases to nodes in 3! = 6 ways, so
+the two shapes admit 2 * 6 = 12 trees.
+
