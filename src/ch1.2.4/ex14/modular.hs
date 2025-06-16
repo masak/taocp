@@ -16,6 +16,23 @@ modularInverse m n = go 1 0 m n
                 0 -> a
                 _ -> go a (a' - q * a) d r
 
+prompt :: String -> IO Int
+prompt query = do
+    putStr query
+    hFlush stdout
+    readLn :: IO Int
+
+coprime :: Int -> Int -> Bool
+coprime m n = gcd m n == 1
+
+askForRemainders :: Int -> Int -> IO ()
+askForRemainders m n = do
+    let mn = m * n
+    mr <- prompt ("x mod " ++ (show m) ++ " = ")
+    nr <- prompt ("x mod " ++ (show n) ++ " = ")
+    let mnr = combinedRemainder m n mr nr
+    putStrLn ("x mod " ++ (show mn) ++ " = " ++ (show mnr))
+
 main :: IO ()
 main = do
     m <- prompt "Value of m: "
@@ -23,20 +40,3 @@ main = do
     if coprime m n then
         askForRemainders (min m n) (max m n)
         else error "The two values need to be coprime"
-    where
-        prompt :: String -> IO Int
-        prompt query = do
-            putStr query
-            hFlush stdout
-            readLn :: IO Int
-
-        coprime :: Int -> Int -> Bool
-        coprime m n = gcd m n == 1
-
-        askForRemainders :: Int -> Int -> IO ()
-        askForRemainders m n = do
-            let mn = m * n
-            mr <- prompt ("x mod " ++ (show m) ++ " = ")
-            nr <- prompt ("x mod " ++ (show n) ++ " = ")
-            let mnr = combinedRemainder m n mr nr
-            putStrLn ("x mod " ++ (show mn) ++ " = " ++ (show mnr))
