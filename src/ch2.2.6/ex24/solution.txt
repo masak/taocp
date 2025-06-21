@@ -1,0 +1,7 @@
+This exercise is based on one from "Data Structures and Algorithms" by Aho, Hopcroft, and Ullman.
+
+The trick is to keep two arrays, SPARSE and DENSE. We also keep a quantity `s` (initially 0), the first index in DENSE we don't care about.
+
+For each i < s, DENSE[i] = k and SPARSE[k] = i.
+
+This would be enough if we just want to represent a set of things. If we also want to map to values, we can have an additional array DATA, parallel with DENSE.
